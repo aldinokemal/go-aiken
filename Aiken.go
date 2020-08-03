@@ -27,7 +27,7 @@ func ReadAiken(path string) (result []Aiken, err error) {
 		for _, val := range contentPerLines {
 			line := strings.Trim(val, " ")
 			isAnswer, _ := regexp.MatchString("^ANSWER:{1}", line)
-			if line != "" {
+			if strings.Trim(line, " ") != "" {
 				if start {
 					tmpData.Question = strings.TrimSuffix(line, "\r")
 					start = false
