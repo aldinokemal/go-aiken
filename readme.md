@@ -13,4 +13,7 @@ AIKEN RESULT
 ---
 ###How to use
 1. install `go get github.com/aldinokemal/go-aiken`
-2. import in your file `import github.com/aldinokemal/go-aiken`
+2. import in your file `import aiken github.com/aldinokemal/go-aiken`
+3. running script aiken.ReadAiken("path_file.txt")
+
+see example for detail
