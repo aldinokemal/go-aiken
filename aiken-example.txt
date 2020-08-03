@@ -1,0 +1,18 @@
+Laravel merupakan framework PHP yang menggunakan arsitektur MVC yaitu?
+A. Model View Controller
+B. Model Variate Controller
+C. Model Variate Center
+D. Make View Controller
+ANSWER:A
+Cara install laravel dengan nama webKita dan versi terbaru adalah?
+A. composer create-project --prefer-dist laravel/laravel webKita
+B. composer create-project laravel/laravel webKita
+C. composer create-project laravel/laravel webKita --prefer-dist
+D. composer create-project laravel/laravel --prefer-dist webKita
+ANSWER:A
+Cara menjalankan projek laravel yang sudah diinstall di dalam port 8080
+A. php artisan serve --port 8080
+B. php artisan --port 8080 serve
+C. php artisan serve --p 8080
+D. php artisan serve --8080
+ANSWER:A
