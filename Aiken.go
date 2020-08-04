@@ -47,8 +47,8 @@ func ReadAiken(path string) (result []Aiken, err error) {
 				} else {
 					options := strings.SplitN(line, " ", 2)
 					choice := Options{
-						Answer: strings.Trim(options[1], " \r"),
-						Desc:   regexp.MustCompile(`\.|\)`).ReplaceAllString(options[0], ""),
+						Answer:   regexp.MustCompile(`\.|\)`).ReplaceAllString(options[0], ""),
+						Desc: strings.Trim(options[1], " \r"),
 					}
 					tmpChoices = append(tmpChoices, choice)
 				}
