@@ -6,10 +6,15 @@ import (
 	"strings"
 )
 
+type Options struct {
+	Choice string `json:"choice"`
+	Answer string `json:"answer"`
+}
+
 type Aiken struct {
-	Question string            `json:"question"`
-	Options  map[string]string `json:"options"`
-	Answer   string            `json:"answer"`
+	Question string  `json:"question"`
+	Options  Options `json:"options"`
+	Answer   string  `json:"answer"`
 }
 
 func ReadAiken(path string) (result []Aiken, err error) {
@@ -21,9 +26,9 @@ func ReadAiken(path string) (result []Aiken, err error) {
 		content := string(names)
 		contentPerLines := strings.Split(content, "\n")
 
-
 		var tmpData Aiken
-		tmpOptions := make(map[string]string)
+		var tmpChoices Options
+
 		for _, val := range contentPerLines {
 			line := strings.TrimSuffix(strings.Trim(val, " \r\n"), "\r\n")
 			if line != "" {
@@ -34,14 +39,15 @@ func ReadAiken(path string) (result []Aiken, err error) {
 				} else if isAnswer {
 					answer := regexp.MustCompile(`^ANSWER:{1}`).ReplaceAllString(line, "")
 					tmpData.Answer = strings.TrimSuffix(answer, "\r")
-					tmpData.Options = tmpOptions
+					tmpData.Options = tmpChoices
 					result = append(result, tmpData)
 					start = true
 					tmpData = Aiken{}
-					tmpOptions = map[string]string{}
+					tmpChoices = Options{}
 				} else {
 					options := strings.SplitN(line, " ", 2)
-					tmpOptions[regexp.MustCompile(`\.|\)`).ReplaceAllString(options[0], "")] = strings.Trim(options[1], " \r")
+					tmpChoices.Choice = regexp.MustCompile(`\.|\)`).ReplaceAllString(options[0], "")
+					tmpChoices.Answer = strings.Trim(options[1], " \r")
 				}
 			}
 		}
