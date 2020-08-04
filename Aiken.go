@@ -7,7 +7,7 @@ import (
 )
 
 type Options struct {
-	Choice string `json:"choice"`
+	Desc   string `json:"desc"`
 	Answer string `json:"answer"`
 }
 
@@ -47,8 +47,8 @@ func ReadAiken(path string) (result []Aiken, err error) {
 				} else {
 					options := strings.SplitN(line, " ", 2)
 					choice := Options{
-						Choice: regexp.MustCompile(`\.|\)`).ReplaceAllString(options[0], ""),
 						Answer: strings.Trim(options[1], " \r"),
+						Desc:   regexp.MustCompile(`\.|\)`).ReplaceAllString(options[0], ""),
 					}
 					tmpChoices = append(tmpChoices, choice)
 				}
