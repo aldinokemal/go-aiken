@@ -11,9 +11,10 @@ AIKEN SOURCE
 <br>
 AIKEN RESULT
 
-
 ---
+
 <h3>How to use</h3>
+
 1. install `go get github.com/aldinokemal/go-aiken`
 2. import in your file `import aiken github.com/aldinokemal/go-aiken`
 3. running script aiken.ReadAiken("path_file.txt")
