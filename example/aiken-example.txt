@@ -16,3 +16,12 @@ B. php artisan --port 8080 serve
 C. php artisan serve --p 8080
 D. php artisan serve --8080
 ANSWER:A
+
+
+
+
+
+
+
+
+

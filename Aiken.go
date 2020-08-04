@@ -25,9 +25,9 @@ func ReadAiken(path string) (result []Aiken, err error) {
 		var tmpData Aiken
 		tmpOptions := make(map[string]string)
 		for _, val := range contentPerLines {
-			line := strings.Trim(val, " ")
-			isAnswer, _ := regexp.MatchString("^ANSWER:{1}", line)
-			if strings.Trim(line, " ") != "" {
+			line := strings.TrimSuffix(strings.Trim(val, " \r\n"), "\r\n")
+			if line != "" {
+				isAnswer, _ := regexp.MatchString("^ANSWER:{1}", line)
 				if start {
 					tmpData.Question = strings.TrimSuffix(line, "\r")
 					start = false
