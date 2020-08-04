@@ -12,9 +12,9 @@ type Options struct {
 }
 
 type Aiken struct {
-	Question string  `json:"question"`
-	Options  Options `json:"options"`
-	Answer   string  `json:"answer"`
+	Question string    `json:"question"`
+	Options  []Options `json:"options"`
+	Answer   string    `json:"answer"`
 }
 
 func ReadAiken(path string) (result []Aiken, err error) {
@@ -27,7 +27,7 @@ func ReadAiken(path string) (result []Aiken, err error) {
 		contentPerLines := strings.Split(content, "\n")
 
 		var tmpData Aiken
-		var tmpChoices Options
+		var tmpChoices []Options
 
 		for _, val := range contentPerLines {
 			line := strings.TrimSuffix(strings.Trim(val, " \r\n"), "\r\n")
@@ -43,11 +43,14 @@ func ReadAiken(path string) (result []Aiken, err error) {
 					result = append(result, tmpData)
 					start = true
 					tmpData = Aiken{}
-					tmpChoices = Options{}
+					tmpChoices = []Options{}
 				} else {
 					options := strings.SplitN(line, " ", 2)
-					tmpChoices.Choice = regexp.MustCompile(`\.|\)`).ReplaceAllString(options[0], "")
-					tmpChoices.Answer = strings.Trim(options[1], " \r")
+					choice := Options{
+						Choice: regexp.MustCompile(`\.|\)`).ReplaceAllString(options[0], ""),
+						Answer: strings.Trim(options[1], " \r"),
+					}
+					tmpChoices = append(tmpChoices, choice)
 				}
 			}
 		}
